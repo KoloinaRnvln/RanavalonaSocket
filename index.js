@@ -14,8 +14,8 @@ io.on("connection", (socket) => {
     console.log("Connected to socket.io " + uid);
   });
 
-  socket.on("notification", (to) => {
-    socket.in(to).emit("new notification");
+  socket.on("notification", ({ to, category }) => {
+    socket.in(to).emit("new notification", { to, category });
   });
 
   socket.on("relation change", ({ body, category }) => {
